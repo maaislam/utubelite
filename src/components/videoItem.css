@@ -1,0 +1,12 @@
+
+
+.video-item{
+    
+    display: grid !important;
+    grid-template-columns: 45% 55%;
+    gap: 1rem;
+    align-items: center !important;
+    cursor: pointer;
+   
+    
+}
