@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import './videoItem.css'
+import './videoItem.css';
+
+import { connect } from 'react-redux';
+import {  selectVideo  } from '../actions'
 
 class VideoItem extends Component {
 
 
 
     onVideoSelect = () => {
-        this.props.onVideoSelect(this.props.video)
+
+        //this.props.onVideoSelect(this.props.video)
+        this.props.selectVideo(this.props.video)
     }
 
 
@@ -30,4 +35,10 @@ class VideoItem extends Component {
     }
 }
 
-export default VideoItem;
+const mapStateToProps = (state) => {
+    return {
+       
+    }
+}
+
+export default connect( mapStateToProps, { selectVideo })(VideoItem);

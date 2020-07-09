@@ -4,15 +4,15 @@ import youtube from '../apis/youtube'
 import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
-const KEY  = 'AIzaSyBsSb7HZlO4JGnr--H6b_mi7o5Ty8AtoGI';
-
+import { connect } from 'react-redux';
+import {  selectVideo  } from '../actions'
 
 class App extends Component {
 
   state = {
 
     videos: [],
-    selectedVideo:null
+    //selectedVideo:null
 
   };
 
@@ -22,6 +22,9 @@ class App extends Component {
   };
 
   onFormSubmit = async (searchTerm) =>{
+
+    const KEY  = 'AIzaSyCRUtfXi15E6BEu5xx6LE-h3BS5soELJhg';
+
       try{
         const response = await youtube.get('/search',{
         params: {
@@ -31,23 +34,24 @@ class App extends Component {
           key: KEY
         }
       });
-      console.log(response);
+      //console.log(response);
       //set state with response data items
+      this.props.selectVideo(response.data.items[0])
       this.setState({
         videos:response.data.items,
-        selectedVideo:response.data.items[0]
+        //selectedVideo:response.data.items[0]
       })
       }catch (err) {
         console.log(err)
       }
     };
 
-  onVideoSelect = (selectedVideo)=>{
+  /*onVideoSelect = (selectedVideo)=>{
     this.setState({
       selectedVideo
     });
   };
-
+*/
 
 
   render() {
@@ -56,10 +60,10 @@ class App extends Component {
         <SearchBar onFormSubmit= {this.onFormSubmit}/>
         <div className="ui grid">
           <div className="eleven wide column">
-            <VideoDetail selectedVideo = {this.state.selectedVideo}/>  
+            <VideoDetail/>  
           </div>
           <div className="five wide column">
-            <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos}/>
+            <VideoList videos={this.state.videos}/>
           </div>
           
         </div>
@@ -70,4 +74,12 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  
+   return {
+      selectedVideo:state.selectedVideo
+    }
+}
+
+export default connect( mapStateToProps, { selectVideo })(App);

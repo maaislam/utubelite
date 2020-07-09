@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import VideoItem from './VideoItem';
-import './videoList.css'
+import './videoList.css';
+
+
 
 class VideoList extends Component {
 
 
 
-    onVideoSelect = (selectedVideo) => {
+    /*onVideoSelect = (selectedVideo) => {
 
         this.props.onVideoSelect(selectedVideo)
 
-    };
+    };*/
 
     renderList = ()=>{
         const { videos } = this.props;
@@ -19,7 +21,7 @@ class VideoList extends Component {
             return videos.map((video) =>{
                 return (
                     <VideoItem
-                        onVideoSelect = {this.onVideoSelect} 
+                        //onVideoSelect = {this.onVideoSelect} 
                         video = {video} 
                         key={video.id.videoId}/>
                 )
@@ -37,6 +39,10 @@ class VideoList extends Component {
             </div>
         );
     }
+
+
 }
+
+
 
 export default VideoList;

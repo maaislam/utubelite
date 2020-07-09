@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
+
+
 class VideoDetail extends Component {
 
-
+ 
     videoPlayer = () => {
-        const { selectedVideo } = this.props;
+       
+     
         
-        
-        if (selectedVideo){
+        if (this.props.selectedVideo){
+
+            const { selectedVideo } = this.props;
+                console.log(selectedVideo)
             const vidSrc = `https://www.youtube.com/embed/${selectedVideo.id.videoId}`;
             return(
                 <div >
@@ -36,5 +43,10 @@ class VideoDetail extends Component {
         );
     }
 }
-
-export default VideoDetail;
+const mapStateToProps = (state) => {
+    
+    return {
+      selectedVideo:state.selectedVideo
+    }
+  };
+export default connect(mapStateToProps)(VideoDetail);
