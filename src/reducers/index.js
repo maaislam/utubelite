@@ -1,20 +1,56 @@
 
 import { combineReducers } from 'redux';
 
-const initialState = {
 
-    selectedVideo:null
-}
 
-const selectedVideoReducer =  (state = initialState, action) => {
+const selectedVideoReducer =  (state = null, action) => {
    
-    if(action.type==='VIDEO_SELECTED'){
-        return action.payload;
+    switch (action.type) {
+        case 'VIDEO_SELECTED':
+            return action.payload;    
+    
+        default:
+            return state; 
     }
 
-    return state.selectedVideo;
 }
 
+
+const searchTermReducer = (state = '', action) => {
+
+    switch (action.type) {
+        case 'INPUT':
+            return action.payload
+            
+    
+        default:
+            return state;
+    }
+
+};
+
+
+
+//for the api call
+
+const getVideoReducer = (state = [], action) => {
+
+    switch (action.type) {
+        case 'GET_VIDEO':
+            return action.payload 
+    
+        default:
+            
+        return state
+    }
+
+}
+
+
+
 export default combineReducers({
-    selectedVideo: selectedVideoReducer
+    selectedVideo: selectedVideoReducer,
+    videos:getVideoReducer,
+    searchTerm: searchTermReducer
 });
+

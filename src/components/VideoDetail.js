@@ -14,7 +14,7 @@ class VideoDetail extends Component {
         if (this.props.selectedVideo){
 
             const { selectedVideo } = this.props;
-                console.log(selectedVideo)
+                //console.log(selectedVideo)
             const vidSrc = `https://www.youtube.com/embed/${selectedVideo.id.videoId}`;
             return(
                 <div >

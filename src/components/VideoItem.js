@@ -6,7 +6,7 @@ import {  selectVideo  } from '../actions'
 
 class VideoItem extends Component {
 
-
+   
 
     onVideoSelect = () => {
 
@@ -37,7 +37,7 @@ class VideoItem extends Component {
 
 const mapStateToProps = (state) => {
     return {
-       
+       videos:state.videos
     }
 }
 

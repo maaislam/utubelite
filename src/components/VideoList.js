@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import VideoItem from './VideoItem';
 import './videoList.css';
-
+import { connect } from 'react-redux';
+import {  selectVideo  } from '../actions'
 
 
 class VideoList extends Component {
 
 
+
+   
 
     /*onVideoSelect = (selectedVideo) => {
 
@@ -17,7 +20,7 @@ class VideoList extends Component {
     renderList = ()=>{
         const { videos } = this.props;
         if (videos){
-
+            
             return videos.map((video) =>{
                 return (
                     <VideoItem
@@ -45,4 +48,11 @@ class VideoList extends Component {
 
 
 
-export default VideoList;
+const mapStateToProps = (state) => {
+    //console.log(state.videos)
+    return {
+       videos:state.videos
+    }
+}
+
+export default connect( mapStateToProps, {selectVideo})(VideoList);
